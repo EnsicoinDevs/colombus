@@ -1,0 +1,16 @@
+[package]
+name = "service_book"
+version = "0.1.0"
+authors = ["Quentin Boyer <qbsecond@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+uuid = { version = "0.7.4", features = ["serde"] }
+serde = { version = "1.0.98", features = ["derive"] }
+reqwest = { version = "0.9.19", optional = true }
+
+[features]
+
+discover = ["reqwest"]
