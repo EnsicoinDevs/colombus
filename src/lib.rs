@@ -25,21 +25,20 @@ pub struct Session {
     pub token: Uuid,
 }
 
+#[derive(Serialize, Deserialize, Clone, PartialEq, Eq, Hash)]
+pub struct ServiceIdentity {
+    pub protocol: String,
+    pub address: String,
+}
+
 #[cfg(feature = "discover")]
 pub mod discover {
 
-    use super::{PingResponse, RegisterResponse};
+    use super::{PingResponse, RegisterResponse, ServiceIdentity};
     use reqwest;
     use reqwest::Client;
-    use serde::{Deserialize, Serialize};
     use std::thread::sleep;
     use std::time::Duration;
-
-    #[derive(Serialize, Deserialize, Clone, PartialEq, Eq, Hash)]
-    pub struct ServiceIdentity {
-        pub protocol: String,
-        pub address: String,
-    }
 
     pub fn get_peers(api_path: &str, protocol: &str) -> Result<super::ServiceList, reqwest::Error> {
         reqwest::get(&format!("{}/discover/{}", api_path, protocol))?.json()
