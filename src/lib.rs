@@ -1,26 +1,26 @@
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, PartialEq, Eq, Hash)]
 pub struct ServiceList {
     pub trusted: Vec<String>,
     pub untrusted: Vec<String>,
 }
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, PartialEq, Eq, Hash)]
 pub struct Address {
     pub address: String,
 }
 
-#[derive(Serialize, Deserialize, Clone, Copy)]
+#[derive(Serialize, Deserialize, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct PingResponse {
     pub ack: bool,
 }
-#[derive(Serialize, Deserialize, Clone, Copy)]
+#[derive(Serialize, Deserialize, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct RegisterResponse {
     pub session: Option<Session>,
 }
 
-#[derive(Serialize, Deserialize, Clone, Copy)]
+#[derive(Serialize, Deserialize, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct Session {
     pub token: Uuid,
 }
@@ -35,7 +35,7 @@ pub mod discover {
     use std::thread::sleep;
     use std::time::Duration;
 
-    #[derive(Serialize, Deserialize, Clone)]
+    #[derive(Serialize, Deserialize, Clone, PartialEq, Eq, Hash)]
     pub struct ServiceIdentity {
         pub protocol: String,
         pub address: String,
